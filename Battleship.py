@@ -319,64 +319,6 @@ def gridCreation(gridSize, displayGridList, displayPlayerGrid): #This function i
             displayGridList[i].append('O') #Here it is looping adding the correct amount of default blank tiles. One append does the internal, the other here does the display list
             displayPlayerGrid[i].append('O')
         gridCreateRun = gridCreateRun + 1 #This iterates until the grid reaches the proper size
-color = [Fore.BLUE,Fore.CYAN,Fore.GREEN,Fore.LIGHTBLACK_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTCYAN_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTMAGENTA_EX,Fore.LIGHTRED_EX,Fore.LIGHTWHITE_EX,Fore.LIGHTYELLOW_EX,Fore.MAGENTA,Fore.RED,Fore.WHITE,Fore.YELLOW]
-colorchoice = random.choice(color)
-print(colorchoice +"""                                                                                                                                                                                      
-       
-               ,---.   ,--.--------.  ,--.--------.               ,----.    ,-,--.  ,--.-,,-,--, .=-.-.   _ __    
-    _..---.  .--.'  \ /==/,  -   , -\/==/,  -   , -\  _.-.     ,-.--` , \ ,-.'-  _\/==/  /|=|  |/==/_ /.-`.' ,`.  
-  .' .'.-. \ \==\-/\ \\==\.-.  - ,-./\==\.-.  - ,-./.-,.'|    |==|-  _.-`/==/_ ,_.'|==|_ ||=|, |==|, |/==/, -   \ 
- /==/- '=' / /==/-|_\ |`--`\==\- \    `--`\==\- \  |==|, |    |==|   `.-.\==\  \   |==| ,|/=| _|==|  |==| _ .=. | 
- |==|-,   '  \==\,   - \    \==\_ \        \==\_ \ |==|- |   /==/_ ,    / \==\ -\  |==|- `-' _ |==|- |==| , '=',| 
- |==|  .=. \ /==/ -   ,|    |==|- |        |==|- | |==|, |   |==|    .-'  _\==\ ,\ |==|  _     |==| ,|==|-  '..'  
- /==/- '=' ,/==/-  /\ - \   |==|, |        |==|, | |==|- `-._|==|_  ,`-._/==/\/ _ ||==|   .-. ,\==|- |==|,  |     
-|==|   -   /\==\ _.\=\.-'   /==/ -/        /==/ -/ /==/ - , ,/==/ ,     /\==\ - , //==/, //=/  /==/. /==/ - |     
--._`.___,'  `--`           `--`--`        `--`--` `--`-----'`--`-----``  `--`---' `--`                                                                                                                                                                              
-                                                                                                                                                                                      
-                                                                                                                                                                                      
-                                                                                                                                                                                      
-                                                                                                                                                                                      
-                                    """)
-colorchoice = random.choice(color)
-print(colorchoice +"""                                                                                                                                             
-                                                              -                                                                                                                       
-                                                              =%#                                                                                                                     
-                                  ..#:                   =    -.   :                                                                                                                  
-                                   .*:....::                  +#-.:=                                                                                                                  
-                                    *=          =             #*-:::::-                                                                                                               
-                                    -           -             ##=-----+-                                                                                                              
-                             ..   -=+++     .   -.   :        **##*+***+                                                                                                              
-                                    *.  :***#**@%%#-          *#%#%*+***                                                                                                              
-                                    :.  .=. ##*+-=+*+==-:-*=====*+==-::-:..:++:                                                                                                       
-                          -:.=@#=+*#%#**+==-::==+**=+++*-*#======-.=##%@---:+-+==.                                                                                                    
-          #%++++*@@@@@+:---+%####-++*==-........+*=-#%+--+=======-:=%@@%#=--:=*##%                                                                                                    
-           ++**#%*=+::-@*+=:.......:+===:.-+*@*++-:--+******++++==++++*=--::-+**++*++==-=-.                                                                                           
-            .**++++*%%#*++++=======@*+++=-+-+*===:..-+=====*#++++==:..#+......:::::::=-....:                                                                                          
-              .@#**+++++++*%#**@@@@@@@*===---+++=:.::-*#*+===-::......-%....:--:::::--@@=-==:                                                                                         
-               -@@@@#**+++++++++**%%@@@@@@@@**#------+*#+====++++===-:::::::--===++=*%+=+#@#:    .           -*-====.                                                                 
-                +@@@@@@@@#***++++++====+*#@@@*+@+====++-*###%@#=======-::::-----:.-......:::::::.:*+.-*+=++: .                                                                        
-                   +@@@@@@@@@@##**++++++++++====*%#***++*-.+-  .===========*#*++=::-    ...   ... .**=                                                                                
-                       +@@@@@@@@@@@%***+++++++++++=====++=#@:  .=+==-----------=-:----=#%#*+====*#%%++#+                       +=-*@*-#-                                              
-                           :#@@@@@@@@@@@@@#**++++++++====+=-----=+==**+======+==-::::::-:....   .%**++++++++++++**-  :..-#=.-==.                                                      
-                                +%@@@@@@@@@@@@@@%**+++++++=====-----------+##*##+=====----:::::::+-                -*=-=*                                                             
-                                     =@@@@@@@@@@@@@@@@%#**+============--=++====+=--=##+===========+. .....        .=====+++*#=                                                       
-                                          .#@@@@@@@@@@@@@@@@@#++======++++++======+==-------==-+#*=++**++**+===============+++++++*+==-                                               
-                                               .=#@@@@@@@@@@@@@@@@@@@#**+++======+++++++===============**+*#+===============*+++++++++++++*+:.                                        
-                                                     .*%@@@@@@@@@@@@@@@@@@@#*+===+++++++++++++++===---=======-:--=**+=++===+*++***+++++++++*%@@@@#*#+                                 
-                                                            +@@@@@@@@@@@@@@@@@@@@@@%++++===++++==+=--------==+==----::::--=+=+*%@@%%@@%+++++++++++***++++++++*=                       
-                                                                 .=%@@%@@%@@@@@@@@@@@@@@@%#**++++*=====-----=+++++=====++==--------------===+*+++*#%#*+++++++++++*#*=:                
-                                                                        =+#@@@@@@@@@@@@@@@@@@@@@@@#*+=========+++++++++========----------------------::::--+**++********##+           
-                                                                              .#@@%@@%%%%@@@@@@@@@@@@@@@@@#+=**+++++++++++===============----------*=-----::::::::::.......*          
-                                                                                     .=%%%@@@%%@@@@@@@@@@@@@@@@@@@@%*+++++++=++===================@@@*------------:::.....-.          
-                                                                                            -+%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#*++++++++++++===========--------------:::...-.           
-                                                                                                   +%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%***++++++++++++==========-------::::=             
-                                                                                                          -%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*+++++++++==========--:-=               
-                                                                                                                .-*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%*+++++++=====:                 
-                                                                                                                        =#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=::.                     
-                                                                                                                               .*@@@@@@@@@@@@@@@@@@@@@@=                              
-                                                                                                                                      .-#@@@@@@@@@@@@@%:                              
-                                                                                                                                             .=*%@@@@@@@@#.                           
-                                                                                                                                                     :*%@@@+    """)
 
 
 
@@ -450,50 +392,113 @@ def comp_shot(displayPlayerGrid, gridSize): #computer shoots at us
         displayPlayerGrid[comp_shotcol][comp_shotrow] = comp_shot
     
 
-displayGridList = []
-displayPlayerGrid = []
-shipsLocationPlayer = {}
-shipsLocationBot = {}
-#AAAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUIUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhh... oh
-#it's small now
+def main():
+    color = [Fore.BLUE,Fore.CYAN,Fore.GREEN,Fore.LIGHTBLACK_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTCYAN_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTMAGENTA_EX,Fore.LIGHTRED_EX,Fore.LIGHTWHITE_EX,Fore.LIGHTYELLOW_EX,Fore.MAGENTA,Fore.RED,Fore.WHITE,Fore.YELLOW]
+    colorchoice = random.choice(color)
+    print(colorchoice +"""                                                                                                                                                                                      
+        
+                ,---.   ,--.--------.  ,--.--------.               ,----.    ,-,--.  ,--.-,,-,--, .=-.-.   _ __    
+        _..---.  .--.'  \ /==/,  -   , -\/==/,  -   , -\  _.-.     ,-.--` , \ ,-.'-  _\/==/  /|=|  |/==/_ /.-`.' ,`.  
+    .' .'.-. \ \==\-/\ \\==\.-.  - ,-./\==\.-.  - ,-./.-,.'|    |==|-  _.-`/==/_ ,_.'|==|_ ||=|, |==|, |/==/, -   \ 
+    /==/- '=' / /==/-|_\ |`--`\==\- \    `--`\==\- \  |==|, |    |==|   `.-.\==\  \   |==| ,|/=| _|==|  |==| _ .=. | 
+    |==|-,   '  \==\,   - \    \==\_ \        \==\_ \ |==|- |   /==/_ ,    / \==\ -\  |==|- `-' _ |==|- |==| , '=',| 
+    |==|  .=. \ /==/ -   ,|    |==|- |        |==|- | |==|, |   |==|    .-'  _\==\ ,\ |==|  _     |==| ,|==|-  '..'  
+    /==/- '=' ,/==/-  /\ - \   |==|, |        |==|, | |==|- `-._|==|_  ,`-._/==/\/ _ ||==|   .-. ,\==|- |==|,  |     
+    |==|   -   /\==\ _.\=\.-'   /==/ -/        /==/ -/ /==/ - , ,/==/ ,     /\==\ - , //==/, //=/  /==/. /==/ - |     
+    -._`.___,'  `--`           `--`--`        `--`--` `--`-----'`--`-----``  `--`---' `--`                                                                                                                                                                              
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+                                        """)
+    colorchoice = random.choice(color)
+    print(colorchoice +"""                                                                                                                                             
+                                                                -                                                                                                                       
+                                                                =%#                                                                                                                     
+                                    ..#:                   =    -.   :                                                                                                                  
+                                    .*:....::                  +#-.:=                                                                                                                  
+                                        *=          =             #*-:::::-                                                                                                               
+                                        -           -             ##=-----+-                                                                                                              
+                                ..   -=+++     .   -.   :        **##*+***+                                                                                                              
+                                        *.  :***#**@%%#-          *#%#%*+***                                                                                                              
+                                        :.  .=. ##*+-=+*+==-:-*=====*+==-::-:..:++:                                                                                                       
+                            -:.=@#=+*#%#**+==-::==+**=+++*-*#======-.=##%@---:+-+==.                                                                                                    
+            #%++++*@@@@@+:---+%####-++*==-........+*=-#%+--+=======-:=%@@%#=--:=*##%                                                                                                    
+            ++**#%*=+::-@*+=:.......:+===:.-+*@*++-:--+******++++==++++*=--::-+**++*++==-=-.                                                                                           
+                .**++++*%%#*++++=======@*+++=-+-+*===:..-+=====*#++++==:..#+......:::::::=-....:                                                                                          
+                .@#**+++++++*%#**@@@@@@@*===---+++=:.::-*#*+===-::......-%....:--:::::--@@=-==:                                                                                         
+                -@@@@#**+++++++++**%%@@@@@@@@**#------+*#+====++++===-:::::::--===++=*%+=+#@#:    .           -*-====.                                                                 
+                    +@@@@@@@@#***++++++====+*#@@@*+@+====++-*###%@#=======-::::-----:.-......:::::::.:*+.-*+=++: .                                                                        
+                    +@@@@@@@@@@##**++++++++++====*%#***++*-.+-  .===========*#*++=::-    ...   ... .**=                                                                                
+                        +@@@@@@@@@@@%***+++++++++++=====++=#@:  .=+==-----------=-:----=#%#*+====*#%%++#+                       +=-*@*-#-                                              
+                            :#@@@@@@@@@@@@@#**++++++++====+=-----=+==**+======+==-::::::-:....   .%**++++++++++++**-  :..-#=.-==.                                                      
+                                    +%@@@@@@@@@@@@@@%**+++++++=====-----------+##*##+=====----:::::::+-                -*=-=*                                                             
+                                        =@@@@@@@@@@@@@@@@%#**+============--=++====+=--=##+===========+. .....        .=====+++*#=                                                       
+                                            .#@@@@@@@@@@@@@@@@@#++======++++++======+==-------==-+#*=++**++**+===============+++++++*+==-                                               
+                                                .=#@@@@@@@@@@@@@@@@@@@#**+++======+++++++===============**+*#+===============*+++++++++++++*+:.                                        
+                                                        .*%@@@@@@@@@@@@@@@@@@@#*+===+++++++++++++++===---=======-:--=**+=++===+*++***+++++++++*%@@@@#*#+                                 
+                                                                +@@@@@@@@@@@@@@@@@@@@@@%++++===++++==+=--------==+==----::::--=+=+*%@@%%@@%+++++++++++***++++++++*=                       
+                                                                    .=%@@%@@%@@@@@@@@@@@@@@@%#**++++*=====-----=+++++=====++==--------------===+*+++*#%#*+++++++++++*#*=:                
+                                                                            =+#@@@@@@@@@@@@@@@@@@@@@@@#*+=========+++++++++========----------------------::::--+**++********##+           
+                                                                                .#@@%@@%%%%@@@@@@@@@@@@@@@@@#+=**+++++++++++===============----------*=-----::::::::::.......*          
+                                                                                        .=%%%@@@%%@@@@@@@@@@@@@@@@@@@@%*+++++++=++===================@@@*------------:::.....-.          
+                                                                                                -+%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#*++++++++++++===========--------------:::...-.           
+                                                                                                    +%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%***++++++++++++==========-------::::=             
+                                                                                                            -%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*+++++++++==========--:-=               
+                                                                                                                    .-*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%*+++++++=====:                 
+                                                                                                                            =#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=::.                     
+                                                                                                                                .*@@@@@@@@@@@@@@@@@@@@@@=                              
+                                                                                                                                        .-#@@@@@@@@@@@@@%:                              
+                                                                                                                                                .=*%@@@@@@@@#.                           
+                                                                                                                                                        :*%@@@+    """)
 
 
-gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
-gameRunning = 1
-gridCreation(gridSize, displayGridList, displayPlayerGrid)
-userGen = int(input("Random or Manually place ships?(1 for random or 0 for manual) "))
+    displayGridList = []
+    displayPlayerGrid = []
+    shipsLocationPlayer = {}
+    shipsLocationBot = {}
+    #AAAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUIUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhh... oh
+    #it's small now
 
-if (userGen == 1):
-    print("Generating!")
-    placePlayerRandom = True
-    place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)
 
-elif (userGen == 0):
-    print("You got it!")
-    # Going to reuse the random function so need a true or false value to not randomly generate player but use random for bot.
-    placePlayerRandom = place_ships_manually(displayPlayerGrid, gridSize, shipsLocationPlayer)
-    place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)    
+    gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
+    gameRunning = 1
+    gridCreation(gridSize, displayGridList, displayPlayerGrid)
+    userGen = int(input("Random or Manually place ships?(1 for random or 0 for manual) "))
 
-gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
+    if (userGen == 1):
+        print("Generating!")
+        placePlayerRandom = True
+        place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)
 
-shipsHit = 0
-turnCount = 0
-#place_ships_randomly(displayGridList)
-gameIterate = 0
-while (gameRunning == 1):
-    time.sleep(.1)
-    os.system('cls')
-    isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot, shipsHit, gameIterate)
-    print (shipsLocationBot)
-    displayGrid(displayGridList, displayPlayerGrid)
-    shipsHit = user_shot(displayGridList, shipsLocationBot, shipsHit)
-    comp_shot(displayPlayerGrid, gridSize)
-    gameIterate = gameIterate + 1
-    if (gameIterate == 20):
+    elif (userGen == 0):
+        print("You got it!")
+        # Going to reuse the random function so need a true or false value to not randomly generate player but use random for bot.
+        placePlayerRandom = place_ships_manually(displayPlayerGrid, gridSize, shipsLocationPlayer)
+        place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)    
+
+    gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
+
+    shipsHit = 0
+    turnCount = 0
+    #place_ships_randomly(displayGridList)
+    gameIterate = 0
+    while (gameRunning == 1):
+        time.sleep(.1)
         os.system('cls')
-        print("You've run out of anti - ship missles! \n \n womp womp \n \n Game over: \n")
+        isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot, shipsHit, gameIterate)
+        print (shipsLocationBot)
         displayGrid(displayGridList, displayPlayerGrid)
-        gameRunning = 0
+        shipsHit = user_shot(displayGridList, shipsLocationBot, shipsHit)
+        comp_shot(displayPlayerGrid, gridSize)
+        gameIterate = gameIterate + 1
+        if (gameIterate == 20):
+            os.system('cls')
+            print("You've run out of anti - ship missles! \n \n womp womp \n \n Game over: \n")
+            displayGrid(displayGridList, displayPlayerGrid)
+            gameRunning = 0
 
 
-# Game changing comment
+    # Game changing comment
+
+main()
