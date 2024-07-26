@@ -7,10 +7,6 @@ import os
 import time
 from colorama import Fore
 
-def internalGrid(gridY): #Internal Grid for debugging
-    length = len(gridY)
-    for i in range(0, length):
-        print(gridY[i])
 
 def place_ships_randomly(playerGridY, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, gridY): #Randomly generates spots on the grid for the ship
     maxSize = gridSize - 1
@@ -222,7 +218,7 @@ def place_ships_manually(playerGridY, maxSize, shipsLocation): #player places sh
         if x == 3:
             return False
 
-def isShipSunk(playerList, botList, shipLocationPlayer, shipLocationBot, shipsHit, turnCount):
+def isShipSunk(playerList, botList, shipLocationPlayer, shipLocationBot,computerTurn):
     sunkShip = None
     shipNameThatsSunk = None
     for key, value in shipLocationPlayer.items():
@@ -230,66 +226,73 @@ def isShipSunk(playerList, botList, shipLocationPlayer, shipLocationBot, shipsHi
         shipLocation1X = value[0][1]
         shipLocation2Y = value[1][0]
         shipLocation2X = value[1][1]
-        if botList[shipLocation1Y][shipLocation1X] == "🔥" and botList[shipLocation2Y][shipLocation2X] == "🔥":
-            print(f"The bot has sunk one of your ships! Step it up")
-            sunkShip = True
-            shipNameThatsSunk = key
-        
-    if sunkShip == True:
-        del shipLocationPlayer[shipNameThatsSunk]
-        sunkShip = False
-        if len(shipLocationPlayer) == 0:
-            print("The bot sunk all your ships, you have lost! (🥺")
-            quit()
+        if(computerTurn):
+            for key, value in shipLocationPlayer.items():
+                shipLocation1Y = value[0][0]
+                shipLocation1X = value[0][1]
+                shipLocation2Y = value[1][0]
+                shipLocation2X = value[1][1]
+            if botList[shipLocation1Y][shipLocation1X] == "🔥" and botList[shipLocation2Y][shipLocation2X] == "🔥":
+                print(f"The bot has sunk one of your ships! Step it up")
+                sunkShip = True
+                shipNameThatsSunk = key
+                if sunkShip == True:
+                    del shipLocationPlayer[shipNameThatsSunk]
+                    sunkShip = False
+                    if len(shipLocationPlayer) == 0:
+                        print("The bot sunk all your ships, you have lost! (🥺")
+                        quit()
+                    sunkShip = None
+                    shipNameThatsSunk = None
+        else:
+            for key, value in shipLocationBot.items():
+                shipLocation1Y = value[0][0]
+                shipLocation1X = value[0][1]
+                shipLocation2Y = value[1][0]
+                shipLocation2X = value[1][1]
+            if playerList[shipLocation1X][shipLocation1Y] == "🔥" and playerList[shipLocation2X][shipLocation2Y] == "🔥":
+                print("You have sunk one of the bots ships!")
+                sunkShip = True
+                shipNameThatsSunk = key
+                if sunkShip == True:
+                    del shipLocationBot[shipNameThatsSunk]
+                    sunkShip = False
+                    if (len(shipLocationBot) == 0):
+                        print("You have sunk all of the bots ships! You have won!")
+                        quit()
     # Reset values 
-    sunkShip = None
-    shipNameThatsSunk = None
-
-    for key, value in shipLocationBot.items():
-        shipLocation1Y = value[0][0]
-        shipLocation1X = value[0][1]
-        shipLocation2Y = value[1][0]
-        shipLocation2X = value[1][1]
-        if playerList[shipLocation1X][shipLocation1Y] == "🔥" and playerList[shipLocation2X][shipLocation2Y] == "🔥":
-            print("You have sunk one of the bots ships!")
-            sunkShip = True
-            shipNameThatsSunk = key
     
-    if sunkShip == True:
-        del shipLocationBot[shipNameThatsSunk]
-        sunkShip = False
-        if (shipsHit == 4):
-            print("You have sunk all of the bots ships! You have won!")
-            quit()
 
 
 
 
-def displayGrid(displayGridList, displayPlayerGrid): #Grid shown to player
-    length = int(len(displayGridList)/2) #This grabs the length of display list
-    xCordList = []
-    for i in range(0, length): #This prints for the length of display list
-        xCordList.append(str(i + 1))
-        Fore.RED
-    if (i < 9):
-        print(Fore.RED + "     1    2    3    4    5    6    7    8    9    10")
-    else:
-        print(Fore.RED +"     1    2    3    4    5    6    7    8    9    10")
-    for i in range(0, length):
-        print(Fore.RED + f'{str(i + 1)}  {str(displayGridList[i])}')
-    print("   Opposing Force \n \n \n   Player")
-    xCordPlayerList = []
-    length = int(len(displayPlayerGrid)/2) #This grabs the length of player display list
-    for i in range(0, length): #This prints for the length of player display list
-        xCordPlayerList.append(str(i + 1))
-    if (i < 9):
-        print(Fore.RED + "     1    2    3    4    5    6    7    8    9    10")
-    else:
-        print(Fore.RED  + "     1    2    3    4    5    6    7    8    9    10")
-        Fore.RED
-    for i in range(0, length):
-        print(Fore.RED + f'{str(i + 1)}  {str(displayPlayerGrid[i])}')
-
+def displayGrid(displayGridList, displayPlayerGrid,computerTurn): #Grid shown to player
+        if(computerTurn):
+            length = 5 #This grabs the length of display list
+            xCordList = []
+            for i in range(0, length): #This prints for the length of display list
+                xCordList.append(str(i + 1))
+                Fore.RED
+            if (i < 9):
+                print(Fore.RED + "     1    2    3    4    5    6    7    8    9    10")
+            else:
+                print(Fore.RED +"     1    2    3    4    5    6    7    8    9    10")
+            for i in range(0, length):
+                print(Fore.RED + f'{str(i + 1)}  {str(displayGridList[i])}')
+            print("   Opposing Force \n \n \n   Player")
+            xCordPlayerList = []
+        else:
+            length = 5 #This grabs the length of player display list
+            for i in range(0, length): #This prints for the length of player display list
+                xCordPlayerList.append(str(i + 1))
+            if (i < 9):
+                print(Fore.RED + "     1    2    3    4    5    6    7    8    9    10")
+            else:
+                print(Fore.RED  + "     1    2    3    4    5    6    7    8    9    10")
+                Fore.RED
+            for i in range(0, length):
+                print(Fore.RED + f'{str(i + 1)}  {str(displayPlayerGrid[i])}')
+            
  
 
 
@@ -319,12 +322,22 @@ def gridCreation(gridSize, displayGridList, displayPlayerGrid): #This function i
             displayGridList[i].append('O') #Here it is looping adding the correct amount of default blank tiles. One append does the internal, the other here does the display list
             displayPlayerGrid[i].append('O')
         gridCreateRun = gridCreateRun + 1 #This iterates until the grid reaches the proper size
+color = [Fore.BLUE,Fore.CYAN,Fore.GREEN,Fore.LIGHTBLACK_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTCYAN_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTMAGENTA_EX,Fore.LIGHTRED_EX,Fore.LIGHTWHITE_EX,Fore.LIGHTYELLOW_EX,Fore.MAGENTA,Fore.RED,Fore.WHITE,Fore.YELLOW]
+colorchoice = random.choice(color)
 
 
 
-def user_shot(displayGridList, shipsLocationBot, shipsHit):#user inputs in coordinates 
-    userPlacingShot = 1
-    while (userPlacingShot == 1):
+
+def shot_function(gridSize,displayGridList,displayPlayerGrid,shipsLocationBot,computerTurn):#user inputs in coordinates
+    if(computerTurn):
+        comp_maxsize = gridSize - 1
+        comp_shotrow = random.randint(0, comp_maxsize)
+        comp_shotcol = random.randint(0, comp_maxsize)
+        if (displayPlayerGrid[comp_shotcol][comp_shotrow] == '🚢'):
+            displayPlayerGrid[comp_shotcol][comp_shotrow] = '🔥'
+        else:
+            displayPlayerGrid[comp_shotcol][comp_shotrow] = "💣"
+    else:
         user_cord = str(input("Where do you want to shoot? Coordinates plz e.g 2,3: ")+ "~") #Makes a string of user's input plus ~ at the end to let the program know that's the end of the string
         print (user_cord)
         if user_cord.count(",") == 1:
@@ -337,168 +350,92 @@ def user_shot(displayGridList, shipsLocationBot, shipsHit):#user inputs in coord
             for key, value in shipsLocationBot.items():
                 botLocationList[counter] = key
                 counter += 1
-            if (displayGridList[user_cordy][user_cordx] != '💣'):
-                print (shipsLocationBot)
+            choosing_location=True
+            while(choosing_location):
                 try:
-                    if  (user_cordy == shipsLocationBot[botLocationList[0]][0][1] and user_cordx  == shipsLocationBot[botLocationList[0]][0][0]):
-                        if (displayGridList[user_cordy][user_cordx] != '🔥'):
-                            displayGridList[user_cordy][user_cordx] = '🔥'
-                            userPlacingShot = 0
-                            shipsHit += 1
-                            return shipsHit
-                    elif  (user_cordy == shipsLocationBot[botLocationList[0]][1][1] and user_cordx  == shipsLocationBot[botLocationList[0]][1][0]):
-                        if (displayGridList[user_cordy][user_cordx] != '🔥'):
-                            displayGridList[user_cordy][user_cordx] = '🔥'
-                            userPlacingShot = 0
-                            shipsHit += 1
-                            return shipsHit
-                    else:
-                        displayGridList[user_cordy][user_cordx] = '💣'
-                        userPlacingShot = 0
-                        shipsHit = shipsHit
-                        return shipsHit
-                except:
-                    try:
-                        if  (user_cordy == shipsLocationBot[botLocationList[1]][0][1] and user_cordx  == shipsLocationBot[botLocationList[1]][0][0]):
+                    if (displayGridList[user_cordy][user_cordx] != '💣'):
+                        print (shipsLocationBot)
+                        if  (user_cordy == shipsLocationBot[botLocationList[0]][0][1] and user_cordx  == shipsLocationBot[botLocationList[0]][0][0]):
                             if (displayGridList[user_cordy][user_cordx] != '🔥'):
                                 displayGridList[user_cordy][user_cordx] = '🔥'
-                                userPlacingShot = 0
-                                shipsHit += 1
-                                return shipsHit
-                        elif  (user_cordy == shipsLocationBot[botLocationList[1]][1][1] and user_cordx  == shipsLocationBot[botLocationList[1]][1][0]):
+                                return displayGridList
+                        elif  (user_cordy == shipsLocationBot[botLocationList[0]][1][1] and user_cordx  == shipsLocationBot[botLocationList[0]][1][0]):
                             if (displayGridList[user_cordy][user_cordx] != '🔥'):
                                 displayGridList[user_cordy][user_cordx] = '🔥'
-                                userPlacingShot = 0
-                                shipsHit += 1
-                                return shipsHit
+                                return displayGridList
+                        elif(user_cordy == shipsLocationBot[botLocationList[0]][0][1] and user_cordx  == shipsLocationBot[botLocationList[1]][0][0]):
+                            if (displayGridList[user_cordy][user_cordx] != '🔥'):
+                                        displayGridList[user_cordy][user_cordx] = '🔥'
+                                        return displayGridList
+                        elif(user_cordy == shipsLocationBot[botLocationList[1]][1][1] and user_cordx  == shipsLocationBot[botLocationList[1]][1][0]):
+                                    if (displayGridList[user_cordy][user_cordx] != '🔥'):
+                                        displayGridList[user_cordy][user_cordx] = '🔥'
+                                        return displayGridList
                         else:
                             displayGridList[user_cordy][user_cordx] = '💣'
-                            userPlacingShot = 0
-                            shipsHit = shipsHit
-                            return shipsHit
-                    except:
-                        continue
-            else:
-                print ("please enter valid coordinates")
-
-def comp_shot(displayPlayerGrid, gridSize): #computer shoots at us 
-    comp_maxsize = gridSize - 1
-    comp_shotrow = random.randint(0, comp_maxsize)
-    comp_shotcol = random.randint(0, comp_maxsize)
-    comp_shot = "💣"
-    if (displayPlayerGrid[comp_shotcol][comp_shotrow] == '🚢'):
-        displayPlayerGrid[comp_shotcol][comp_shotrow] = '🔥'
-    else:
-        displayPlayerGrid[comp_shotcol][comp_shotrow] = comp_shot
-    
-
+                            return displayGridList
+                except:
+                    continue
+                
 def main():
-    color = [Fore.BLUE,Fore.CYAN,Fore.GREEN,Fore.LIGHTBLACK_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTCYAN_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTMAGENTA_EX,Fore.LIGHTRED_EX,Fore.LIGHTWHITE_EX,Fore.LIGHTYELLOW_EX,Fore.MAGENTA,Fore.RED,Fore.WHITE,Fore.YELLOW]
-    colorchoice = random.choice(color)
-    print(colorchoice +"""                                                                                                                                                                                      
-        
-                ,---.   ,--.--------.  ,--.--------.               ,----.    ,-,--.  ,--.-,,-,--, .=-.-.   _ __    
-        _..---.  .--.'  \ /==/,  -   , -\/==/,  -   , -\  _.-.     ,-.--` , \ ,-.'-  _\/==/  /|=|  |/==/_ /.-`.' ,`.  
-    .' .'.-. \ \==\-/\ \\==\.-.  - ,-./\==\.-.  - ,-./.-,.'|    |==|-  _.-`/==/_ ,_.'|==|_ ||=|, |==|, |/==/, -   \ 
-    /==/- '=' / /==/-|_\ |`--`\==\- \    `--`\==\- \  |==|, |    |==|   `.-.\==\  \   |==| ,|/=| _|==|  |==| _ .=. | 
-    |==|-,   '  \==\,   - \    \==\_ \        \==\_ \ |==|- |   /==/_ ,    / \==\ -\  |==|- `-' _ |==|- |==| , '=',| 
-    |==|  .=. \ /==/ -   ,|    |==|- |        |==|- | |==|, |   |==|    .-'  _\==\ ,\ |==|  _     |==| ,|==|-  '..'  
-    /==/- '=' ,/==/-  /\ - \   |==|, |        |==|, | |==|- `-._|==|_  ,`-._/==/\/ _ ||==|   .-. ,\==|- |==|,  |     
-    |==|   -   /\==\ _.\=\.-'   /==/ -/        /==/ -/ /==/ - , ,/==/ ,     /\==\ - , //==/, //=/  /==/. /==/ - |     
-    -._`.___,'  `--`           `--`--`        `--`--` `--`-----'`--`-----``  `--`---' `--`                                                                                                                                                                              
-                                                                                                                                                                                        
-                                                                                                                                                                                        
-                                                                                                                                                                                        
-                                                                                                                                                                                        
-                                        """)
-    colorchoice = random.choice(color)
-    print(colorchoice +"""                                                                                                                                             
-                                                                -                                                                                                                       
-                                                                =%#                                                                                                                     
-                                    ..#:                   =    -.   :                                                                                                                  
-                                    .*:....::                  +#-.:=                                                                                                                  
-                                        *=          =             #*-:::::-                                                                                                               
-                                        -           -             ##=-----+-                                                                                                              
-                                ..   -=+++     .   -.   :        **##*+***+                                                                                                              
-                                        *.  :***#**@%%#-          *#%#%*+***                                                                                                              
-                                        :.  .=. ##*+-=+*+==-:-*=====*+==-::-:..:++:                                                                                                       
-                            -:.=@#=+*#%#**+==-::==+**=+++*-*#======-.=##%@---:+-+==.                                                                                                    
-            #%++++*@@@@@+:---+%####-++*==-........+*=-#%+--+=======-:=%@@%#=--:=*##%                                                                                                    
-            ++**#%*=+::-@*+=:.......:+===:.-+*@*++-:--+******++++==++++*=--::-+**++*++==-=-.                                                                                           
-                .**++++*%%#*++++=======@*+++=-+-+*===:..-+=====*#++++==:..#+......:::::::=-....:                                                                                          
-                .@#**+++++++*%#**@@@@@@@*===---+++=:.::-*#*+===-::......-%....:--:::::--@@=-==:                                                                                         
-                -@@@@#**+++++++++**%%@@@@@@@@**#------+*#+====++++===-:::::::--===++=*%+=+#@#:    .           -*-====.                                                                 
-                    +@@@@@@@@#***++++++====+*#@@@*+@+====++-*###%@#=======-::::-----:.-......:::::::.:*+.-*+=++: .                                                                        
-                    +@@@@@@@@@@##**++++++++++====*%#***++*-.+-  .===========*#*++=::-    ...   ... .**=                                                                                
-                        +@@@@@@@@@@@%***+++++++++++=====++=#@:  .=+==-----------=-:----=#%#*+====*#%%++#+                       +=-*@*-#-                                              
-                            :#@@@@@@@@@@@@@#**++++++++====+=-----=+==**+======+==-::::::-:....   .%**++++++++++++**-  :..-#=.-==.                                                      
-                                    +%@@@@@@@@@@@@@@%**+++++++=====-----------+##*##+=====----:::::::+-                -*=-=*                                                             
-                                        =@@@@@@@@@@@@@@@@%#**+============--=++====+=--=##+===========+. .....        .=====+++*#=                                                       
-                                            .#@@@@@@@@@@@@@@@@@#++======++++++======+==-------==-+#*=++**++**+===============+++++++*+==-                                               
-                                                .=#@@@@@@@@@@@@@@@@@@@#**+++======+++++++===============**+*#+===============*+++++++++++++*+:.                                        
-                                                        .*%@@@@@@@@@@@@@@@@@@@#*+===+++++++++++++++===---=======-:--=**+=++===+*++***+++++++++*%@@@@#*#+                                 
-                                                                +@@@@@@@@@@@@@@@@@@@@@@%++++===++++==+=--------==+==----::::--=+=+*%@@%%@@%+++++++++++***++++++++*=                       
-                                                                    .=%@@%@@%@@@@@@@@@@@@@@@%#**++++*=====-----=+++++=====++==--------------===+*+++*#%#*+++++++++++*#*=:                
-                                                                            =+#@@@@@@@@@@@@@@@@@@@@@@@#*+=========+++++++++========----------------------::::--+**++********##+           
-                                                                                .#@@%@@%%%%@@@@@@@@@@@@@@@@@#+=**+++++++++++===============----------*=-----::::::::::.......*          
-                                                                                        .=%%%@@@%%@@@@@@@@@@@@@@@@@@@@%*+++++++=++===================@@@*------------:::.....-.          
-                                                                                                -+%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#*++++++++++++===========--------------:::...-.           
-                                                                                                    +%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%***++++++++++++==========-------::::=             
-                                                                                                            -%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*+++++++++==========--:-=               
-                                                                                                                    .-*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%*+++++++=====:                 
-                                                                                                                            =#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=::.                     
-                                                                                                                                .*@@@@@@@@@@@@@@@@@@@@@@=                              
-                                                                                                                                        .-#@@@@@@@@@@@@@%:                              
-                                                                                                                                                .=*%@@@@@@@@#.                           
-                                                                                                                                                        :*%@@@+    """)
+        displayGridList = []
+        displayPlayerGrid = []
+        shipsLocationPlayer = {}
+        shipsLocationBot = {}
+        #it's small now
 
 
-    displayGridList = []
-    displayPlayerGrid = []
-    shipsLocationPlayer = {}
-    shipsLocationBot = {}
-    #AAAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUIUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhh... oh
-    #it's small now
+        gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
+        gameRunning = 1
+        gridCreation(gridSize, displayGridList, displayPlayerGrid)
+        userGen = int(input("Random or Manually place ships?(1 for random or 0 for manual) "))
 
+        if (userGen == 1):
+            print("Generating!")
+            placePlayerRandom = True
+            place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)
 
-    gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
-    gameRunning = 1
-    gridCreation(gridSize, displayGridList, displayPlayerGrid)
-    userGen = int(input("Random or Manually place ships?(1 for random or 0 for manual) "))
+        elif (userGen == 0):
+            print("You got it!")
+            # Going to reuse the random function so need a true or false value to not randomly generate player but use random for bot.
+            placePlayerRandom = place_ships_manually(displayPlayerGrid, gridSize, shipsLocationPlayer)
+            place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)    
 
-    if (userGen == 1):
-        print("Generating!")
-        placePlayerRandom = True
-        place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)
+        gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
 
-    elif (userGen == 0):
-        print("You got it!")
-        # Going to reuse the random function so need a true or false value to not randomly generate player but use random for bot.
-        placePlayerRandom = place_ships_manually(displayPlayerGrid, gridSize, shipsLocationPlayer)
-        place_ships_randomly(displayPlayerGrid, gridSize, shipsLocationPlayer, shipsLocationBot, placePlayerRandom, displayGridList)    
-
-    gridSize = userInputGridSize(displayGridList, displayPlayerGrid)
-
-    shipsHit = 0
-    turnCount = 0
-    #place_ships_randomly(displayGridList)
-    gameIterate = 0
-    while (gameRunning == 1):
-        time.sleep(.1)
-        os.system('cls')
-        isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot, shipsHit, gameIterate)
-        print (shipsLocationBot)
-        displayGrid(displayGridList, displayPlayerGrid)
-        shipsHit = user_shot(displayGridList, shipsLocationBot, shipsHit)
-        comp_shot(displayPlayerGrid, gridSize)
-        gameIterate = gameIterate + 1
-        if (gameIterate == 20):
-            os.system('cls')
-            print("You've run out of anti - ship missles! \n \n womp womp \n \n Game over: \n")
-            displayGrid(displayGridList, displayPlayerGrid)
-            gameRunning = 0
-
-
-    # Game changing comment
+        #place_ships_randomly(displayGridList)
+        gameIterate = 0
+        while (gameRunning == 1):
+            computerTurn=True
+            if(computerTurn):
+                time.sleep(.1)
+                os.system('cls')
+                isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot,computerTurn)
+                print (shipsLocationBot)
+                displayGrid(displayGridList, displayPlayerGrid,computerTurn)
+                displayGridList=shot_function(gridSize,displayGridList,displayPlayerGrid,shipsLocationBot,computerTurn)
+                gameIterate = gameIterate + 1
+                computerTurn=False
+                if (gameIterate == 20):
+                    os.system('cls')
+                    print("You've run out of anti - ship missles! \n \n womp womp \n \n Game over: \n")
+                    displayGrid(displayGridList, displayPlayerGrid,computerTurn)
+                    gameRunning = 0
+            else:
+                time.sleep(.1)
+                os.system('cls')
+                isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot,computerTurn)
+                print (shipsLocationBot)
+                displayGrid(displayGridList, displayPlayerGrid,computerTurn)
+                displayGridList=shot_function(gridSize,displayGridList,displayPlayerGrid,shipsLocationBot,computerTurn)
+                gameIterate = gameIterate + 1
+                computerTurn=True
+                if (gameIterate == 20):
+                    os.system('cls')
+                    print("You've run out of anti - ship missles! \n \n womp womp \n \n Game over: \n")
+                    displayGrid(displayGridList, displayPlayerGrid,computerTurn)
+                    gameRunning = 0
 
 main()
+
+# Game changing comment
