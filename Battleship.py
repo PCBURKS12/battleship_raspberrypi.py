@@ -110,7 +110,7 @@ def place_ships_randomly(playerGridY, gridSize, shipsLocationPlayer, shipsLocati
 
             for key, value in shipsLocationBot.items():
                 print(f'{value[0]} and {value[1]}')
-        return  playerGridY, playerGridY, shipsLocationPlayer
+        
             
            
     else:
