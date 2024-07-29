@@ -110,9 +110,7 @@ def place_ships_randomly(playerGridY, gridSize, shipsLocationPlayer, shipsLocati
 
             for key, value in shipsLocationBot.items():
                 print(f'{value[0]} and {value[1]}')
-        return  playerGridY, playerGridY, shipsLocationPlayer
-            
-           
+
     else:
         for i in range(2):
             shipName = str(i)
@@ -293,8 +291,6 @@ def displayGrid(displayGridList, displayPlayerGrid): #Grid shown to player
         print(Fore.RED + f'{str(i + 1)}  {str(displayPlayerGrid[i])}')
 
 
-
-
 def userInputGridSize(displayGridList, displayPlayerGrid): #Allows the user to determnine the grid size
     userGridSizeRunning = 1
     while (userGridSizeRunning != 0):
@@ -321,10 +317,68 @@ def gridCreation(gridSize, displayGridList, displayPlayerGrid): #This function i
             displayGridList[i].append('O') #Here it is looping adding the correct amount of default blank tiles. One append does the internal, the other here does the display list
             displayPlayerGrid[i].append('O')
         gridCreateRun = gridCreateRun + 1 #This iterates until the grid reaches the proper size
+color = [Fore.BLUE,Fore.CYAN,Fore.GREEN,Fore.LIGHTBLACK_EX,Fore.LIGHTBLUE_EX,Fore.LIGHTCYAN_EX,Fore.LIGHTGREEN_EX,Fore.LIGHTMAGENTA_EX,Fore.LIGHTRED_EX,Fore.LIGHTWHITE_EX,Fore.LIGHTYELLOW_EX,Fore.MAGENTA,Fore.RED,Fore.WHITE,Fore.YELLOW]
+colorchoice = random.choice(color)
+print(colorchoice +"""                                                                                                                                                                                      
+       
+               ,---.   ,--.--------.  ,--.--------.               ,----.    ,-,--.  ,--.-,,-,--, .=-.-.   _ __    
+    _..---.  .--.'  \ /==/,  -   , -\/==/,  -   , -\  _.-.     ,-.--` , \ ,-.'-  _\/==/  /|=|  |/==/_ /.-`.' ,`.  
+  .' .'.-. \ \==\-/\ \\==\.-.  - ,-./\==\.-.  - ,-./.-,.'|    |==|-  _.-`/==/_ ,_.'|==|_ ||=|, |==|, |/==/, -   \ 
+ /==/- '=' / /==/-|_\ |`--`\==\- \    `--`\==\- \  |==|, |    |==|   `.-.\==\  \   |==| ,|/=| _|==|  |==| _ .=. | 
+ |==|-,   '  \==\,   - \    \==\_ \        \==\_ \ |==|- |   /==/_ ,    / \==\ -\  |==|- `-' _ |==|- |==| , '=',| 
+ |==|  .=. \ /==/ -   ,|    |==|- |        |==|- | |==|, |   |==|    .-'  _\==\ ,\ |==|  _     |==| ,|==|-  '..'  
+ /==/- '=' ,/==/-  /\ - \   |==|, |        |==|, | |==|- `-._|==|_  ,`-._/==/\/ _ ||==|   .-. ,\==|- |==|,  |     
+|==|   -   /\==\ _.\=\.-'   /==/ -/        /==/ -/ /==/ - , ,/==/ ,     /\==\ - , //==/, //=/  /==/. /==/ - |     
+-._`.___,'  `--`           `--`--`        `--`--` `--`-----'`--`-----``  `--`---' `--`                                                                                                                                                                              
+                                                                                                                                                                                      
+                                                                                                                                                                                      
+                                                                                                                                                                                      
+                                                                                                                                                                                      
+                                    """)
+colorchoice = random.choice(color)
+print(colorchoice +"""                                                                                                                                             
+                                                              -                                                                                                                       
+                                                              =%#                                                                                                                     
+                                  ..#:                   =    -.   :                                                                                                                  
+                                   .*:....::                  +#-.:=                                                                                                                  
+                                    *=          =             #*-:::::-                                                                                                               
+                                    -           -             ##=-----+-                                                                                                              
+                             ..   -=+++     .   -.   :        **##*+***+                                                                                                              
+                                    *.  :***#**@%%#-          *#%#%*+***                                                                                                              
+                                    :.  .=. ##*+-=+*+==-:-*=====*+==-::-:..:++:                                                                                                       
+                          -:.=@#=+*#%#**+==-::==+**=+++*-*#======-.=##%@---:+-+==.                                                                                                    
+          #%++++*@@@@@+:---+%####-++*==-........+*=-#%+--+=======-:=%@@%#=--:=*##%                                                                                                    
+           ++**#%*=+::-@*+=:.......:+===:.-+*@*++-:--+******++++==++++*=--::-+**++*++==-=-.                                                                                           
+            .**++++*%%#*++++=======@*+++=-+-+*===:..-+=====*#++++==:..#+......:::::::=-....:                                                                                          
+              .@#**+++++++*%#**@@@@@@@*===---+++=:.::-*#*+===-::......-%....:--:::::--@@=-==:                                                                                         
+               -@@@@#**+++++++++**%%@@@@@@@@**#------+*#+====++++===-:::::::--===++=*%+=+#@#:    .           -*-====.                                                                 
+                +@@@@@@@@#***++++++====+*#@@@*+@+====++-*###%@#=======-::::-----:.-......:::::::.:*+.-*+=++: .                                                                        
+                   +@@@@@@@@@@##**++++++++++====*%#***++*-.+-  .===========*#*++=::-    ...   ... .**=                                                                                
+                       +@@@@@@@@@@@%***+++++++++++=====++=#@:  .=+==-----------=-:----=#%#*+====*#%%++#+                       +=-*@*-#-                                              
+                           :#@@@@@@@@@@@@@#**++++++++====+=-----=+==**+======+==-::::::-:....   .%**++++++++++++**-  :..-#=.-==.                                                      
+                                +%@@@@@@@@@@@@@@%**+++++++=====-----------+##*##+=====----:::::::+-                -*=-=*                                                             
+                                     =@@@@@@@@@@@@@@@@%#**+============--=++====+=--=##+===========+. .....        .=====+++*#=                                                       
+                                          .#@@@@@@@@@@@@@@@@@#++======++++++======+==-------==-+#*=++**++**+===============+++++++*+==-                                               
+                                               .=#@@@@@@@@@@@@@@@@@@@#**+++======+++++++===============**+*#+===============*+++++++++++++*+:.                                        
+                                                     .*%@@@@@@@@@@@@@@@@@@@#*+===+++++++++++++++===---=======-:--=**+=++===+*++***+++++++++*%@@@@#*#+                                 
+                                                            +@@@@@@@@@@@@@@@@@@@@@@%++++===++++==+=--------==+==----::::--=+=+*%@@%%@@%+++++++++++***++++++++*=                       
+                                                                 .=%@@%@@%@@@@@@@@@@@@@@@%#**++++*=====-----=+++++=====++==--------------===+*+++*#%#*+++++++++++*#*=:                
+                                                                        =+#@@@@@@@@@@@@@@@@@@@@@@@#*+=========+++++++++========----------------------::::--+**++********##+           
+                                                                              .#@@%@@%%%%@@@@@@@@@@@@@@@@@#+=**+++++++++++===============----------*=-----::::::::::.......*          
+                                                                                     .=%%%@@@%%@@@@@@@@@@@@@@@@@@@@%*+++++++=++===================@@@*------------:::.....-.          
+                                                                                            -+%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#*++++++++++++===========--------------:::...-.           
+                                                                                                   +%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%***++++++++++++==========-------::::=             
+                                                                                                          -%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#*+++++++++==========--:-=               
+                                                                                                                .-*%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%*+++++++=====:                 
+                                                                                                                        =#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=::.                     
+                                                                                                                               .*@@@@@@@@@@@@@@@@@@@@@@=                              
+                                                                                                                                      .-#@@@@@@@@@@@@@%:                              
+                                                                                                                                             .=*%@@@@@@@@#.                           
+                                                                                                                                                     :*%@@@+    """)
 
 
-def user_shot(turn, displayGridList, shipsLocationBot, shipsHit,displayPlayerGrid, gridSize):#user inputs in coordinates 
-    
+
+def user_shot(turn, displayGridList, shipsLocationBot, shipsHit, displayPlayerGrid, gridSize):#user inputs in coordinates 
     if turn == 1:
         userPlacingShot = 1
         while (userPlacingShot == 1):
@@ -367,13 +421,13 @@ def user_shot(turn, displayGridList, shipsLocationBot, shipsHit,displayPlayerGri
                                     displayGridList[user_cordy][user_cordx] = '🔥'
                                     userPlacingShot = 0
                                     shipsHit += 1
-                                
+                                   
                             elif  (user_cordy == shipsLocationBot[botLocationList[1]][1][1] and user_cordx  == shipsLocationBot[botLocationList[1]][1][0]):
                                 if (displayGridList[user_cordy][user_cordx] != '🔥'):
                                     displayGridList[user_cordy][user_cordx] = '🔥'
                                     userPlacingShot = 0
                                     shipsHit += 1
-                                
+                                    
                             else:
                                 displayGridList[user_cordy][user_cordx] = '💣'
                                 userPlacingShot = 0
@@ -382,20 +436,19 @@ def user_shot(turn, displayGridList, shipsLocationBot, shipsHit,displayPlayerGri
                         except:
                             continue
                 else:
-                    print ("please enter valid coordinates")    
+                    print ("please enter valid coordinates")
 
     if turn == 0:
-            comp_maxsize = gridSize - 1
-            comp_shotrow = random.randint(0, comp_maxsize)
-            comp_shotcol = random.randint(0, comp_maxsize)
-            comp_shot = "💣"
-            if (displayPlayerGrid[comp_shotcol][comp_shotrow] == '🚢'):
-                displayPlayerGrid[comp_shotcol][comp_shotrow] = '🔥'
-            else:
-                displayPlayerGrid[comp_shotcol][comp_shotrow] = comp_shot
+        comp_maxsize = gridSize - 1
+        comp_shotrow = random.randint(0, comp_maxsize)
+        comp_shotcol = random.randint(0, comp_maxsize)
+        comp_shot = "💣"
+        if (displayPlayerGrid[comp_shotcol][comp_shotrow] == '🚢'):
+            displayPlayerGrid[comp_shotcol][comp_shotrow] = '🔥'
+        else:
+            displayPlayerGrid[comp_shotcol][comp_shotrow] = comp_shot
+    return shipsHit
 
-
-    return shipsHit, displayPlayerGrid, displayGridList
 
 displayGridList = []
 displayPlayerGrid = []
@@ -433,9 +486,8 @@ while (gameRunning == 1):
     isShipSunk(displayGridList, displayPlayerGrid, shipsLocationPlayer, shipsLocationBot, shipsHit, gameIterate)
     print (shipsLocationBot)
     displayGrid(displayGridList, displayPlayerGrid)
-    shipsHit = user_shot(1,displayGridList, shipsLocationBot, shipsHit, displayPlayerGrid, gridSize)
-    user_shot(0,displayGridList, shipsLocationBot, shipsHit, displayPlayerGrid, gridSize)
-    
+    shipsHit = user_shot(1, displayGridList, shipsLocationBot, shipsHit,displayPlayerGrid, gridSize)
+    user_shot(0, displayGridList, shipsLocationBot, shipsHit,displayPlayerGrid, gridSize)
     gameIterate = gameIterate + 1
     if (gameIterate == 100):
         os.system('cls')
